@@ -11,17 +11,15 @@ node {
     registryHost = "ksr1729/"
     imageName = "${registryHost}${appName}:${tag}"
     env.BUILDIMG=imageName
-
+   
     stage "Build"
     
         sh "docker build -t ${imageName} -f applications/hello-kenzan/Dockerfile applications/hello-kenzan"
     
     stage "Push"
-
         withCredentials([usernamePassword( credentialsId: 'docker-hub-credentials', usernameVariable: 'ksr1729', passwordVariable: 'pass123!')]) {
-        def registry_url = "registry.hub.docker.com/"
         sh "docker login -u $USER -p $PASSWORD ${registry_url}"
-        docker.withRegistry("http://${registry_url}", "docker-hub-credentials") {
+        docker.withRegistry("http://registry.hub.docker.com", "docker-hub-credentials") {
             // Push your image now
         sh "docker push ${imageName}"
         }
