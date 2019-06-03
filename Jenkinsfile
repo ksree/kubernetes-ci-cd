@@ -17,13 +17,11 @@ node {
         sh "docker build -t ${imageName} -f applications/hello-kenzan/Dockerfile applications/hello-kenzan"
     
     stage "Push"
-        withCredentials([usernamePassword( credentialsId: 'docker-hub-credentials', usernameVariable: 'ksr1729', passwordVariable: 'pass123!')]) {
-        sh "docker login -u $USER -p $PASSWORD ${registry_url}"
         docker.withRegistry("http://registry.hub.docker.com", "docker-hub-credentials") {
             // Push your image now
         sh "docker push ${imageName}"
         }
-        }
+        
             
     stage "Deploy"
 
