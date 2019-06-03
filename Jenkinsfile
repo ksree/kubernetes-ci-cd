@@ -25,6 +25,7 @@ node {
             // Push your image now
         sh "docker push ${imageName}"
         }
+        }
             
     stage "Deploy"
 
