@@ -24,7 +24,8 @@ node {
         docker.withRegistry("http://${registry_url}", "docker-hub-credentials") {
             // Push your image now
         sh "docker push ${imageName}"
-
+        }
+            
     stage "Deploy"
 
         //kubernetesDeploy configs: "applications/${appName}/k8s/*.yaml", kubeconfigId: 'kenzan_kubeconfig'
