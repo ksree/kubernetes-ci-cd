@@ -17,10 +17,9 @@ node {
         sh "docker build -t ${imageName} -f applications/hello-kenzan/Dockerfile applications/hello-kenzan"
     
     stage "Push"
-        docker.withRegistry("http://registry.hub.docker.com", "docker-hub-credentials") {
-            // Push your image now
+        sh "docker login -u ksr1729 -p pass123!"
         sh "docker push ${imageName}"
-        }
+        
         
             
     stage "Deploy"
