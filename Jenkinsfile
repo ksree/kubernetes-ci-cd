@@ -16,8 +16,8 @@ node {
         sh "mkdir /tmp/s2i"
         sh "ls /usr/local/bin/"
         sh "wget -q -P /tmp/s2i https://github.com/openshift/source-to-image/releases/download/v1.1.14/source-to-image-v1.1.14-874754de-linux-amd64.tar.gz"
-        sh "sudo cp  -r /tmp/s2i  /usr/local/bin"
-        sh "s2i -h"
+       // sh "sudo cp  -r /tmp/s2i  /usr/local/bin"
+        sh "/tmp/s2i -h"
         sh "docker build -t ${imageName} -f applications/hello-kenzan/Dockerfile applications/hello-kenzan"
     
     stage "Push"
