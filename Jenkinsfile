@@ -13,7 +13,8 @@ node {
     env.BUILDIMG=imageName
    
     stage "Build"
-    
+        
+        sh "wget -q source-to-image-v1.1.14-874754de-linux-amd64.tar.gz"
         sh "docker build -t ${imageName} -f applications/hello-kenzan/Dockerfile applications/hello-kenzan"
     
     stage "Push"
