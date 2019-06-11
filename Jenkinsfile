@@ -14,7 +14,7 @@ node {
    
     stage "Build"
         
-        sh "wget -q source-to-image-v1.1.14-874754de-linux-amd64.tar.gz"
+        sh "wget -q https://github.com/openshift/source-to-image/releases/download/v1.1.14/source-to-image-v1.1.14-874754de-linux-amd64.tar.gz"
         sh "docker build -t ${imageName} -f applications/hello-kenzan/Dockerfile applications/hello-kenzan"
     
     stage "Push"
